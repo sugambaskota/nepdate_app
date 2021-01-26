@@ -1,4 +1,4 @@
-import {Alert} from 'react-native';
+import Toast from 'react-native-simple-toast';
 
 import api from '../api/api';
 import {
@@ -27,7 +27,7 @@ export const getCurrentUserProfile = () => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
     dispatch({
       type: PROFILE_ERROR,
@@ -53,7 +53,7 @@ export const getProfileByUserId = (id) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
     dispatch({
       type: PROFILE_ERROR,
@@ -82,7 +82,7 @@ export const createProfile = (formData, navigation) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
     dispatch({
       type: PROFILE_ERROR,
@@ -106,12 +106,12 @@ export const updateProfile = (formData) => async (dispatch) => {
 
     dispatch(getCurrentUserProfile());
 
-    Alert.alert('Details updated successfully!');
+    Toast.show('Details updated successfully!');
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
     dispatch({
       type: PROFILE_ERROR,

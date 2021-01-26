@@ -1,5 +1,6 @@
 import {Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-simple-toast';
 
 import socket from '../utils/socket';
 import api from '../api/api';
@@ -81,7 +82,7 @@ export const register = ({
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg, Toast.LONG);
     }
   }
 };
@@ -112,7 +113,7 @@ export const login = (email, password) => async (dispatch) => {
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg, Toast.LONG);
     }
   }
 };
@@ -141,12 +142,11 @@ export const updateUser = (formData) => async (dispatch) => {
       type: UPDATE_USER,
       payload: res.data,
     });
-
-    Alert.alert('Details updated successfully');
+    Toast.show('Details updated successfully!');
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg, Toast.LONG);
     }
   }
 };

@@ -1,4 +1,4 @@
-import {Alert} from 'react-native';
+import Toast from 'react-native-simple-toast';
 
 import api from '../api/api';
 import {
@@ -27,7 +27,7 @@ export const getCurrentUserPhotos = () => async (dispatch) => {
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -47,7 +47,7 @@ export const getPhotosByUserId = (user_id) => async (dispatch) => {
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -59,11 +59,11 @@ export const setPhotoAsMain = (photo_path) => async (dispatch) => {
       type: SET_PHOTO_MAIN,
       payload: photo_path,
     });
-    Alert.alert('Main photo updated successfully!');
+    Toast.show('Main photo updated successfully!');
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -79,7 +79,7 @@ export const deletePhoto = (photo_path) => async (dispatch) => {
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -107,14 +107,14 @@ export const uploadDp = (photo) => async (dispatch) => {
       type: UPLOAD_DP,
       payload: res.data,
     });
-    Alert.alert('Main photo updated successfully!');
+    Toast.show('Main photo updated successfully!');
   } catch (err) {
     dispatch({
       type: PHOTOS_ERROR,
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -142,7 +142,7 @@ export const uploadPhotos = (photos) => async (dispatch) => {
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };

@@ -1,4 +1,4 @@
-import {Alert} from 'react-native';
+import Toast from 'react-native-simple-toast';
 
 import {
   SET_LIKE_LOADING,
@@ -24,7 +24,7 @@ export const likeUser = (userId) => async (dispatch) => {
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -42,7 +42,7 @@ export const unlikeUser = (userId) => async (dispatch) => {
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -62,7 +62,7 @@ export const getLikers = () => async (dispatch) => {
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -82,7 +82,7 @@ export const getLiked = () => async (dispatch) => {
     });
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };

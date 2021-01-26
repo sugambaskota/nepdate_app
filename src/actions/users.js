@@ -1,4 +1,4 @@
-import {Alert} from 'react-native';
+import Toast from 'react-native-simple-toast';
 
 import api from '../api/api';
 import {
@@ -26,7 +26,7 @@ export const getUsers = (page = 1, size = 6) => async (dispatch) => {
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
     dispatch({
       type: USERS_ERROR,
@@ -45,7 +45,7 @@ export const loadMoreUsers = (page) => async (dispatch) => {
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
     dispatch({
       type: USERS_ERROR,
@@ -72,7 +72,7 @@ export const searchUsers = (query, page = 1, size = 3) => async (dispatch) => {
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
     dispatch({
       type: USERS_ERROR,

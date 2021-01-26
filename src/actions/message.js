@@ -1,5 +1,4 @@
-import {Alert} from 'react-native';
-import api from '../api/api';
+import Toast from 'react-native-simple-toast';
 
 import {
   SET_MESSAGE_LOADING,
@@ -10,6 +9,7 @@ import {
   MESSAGES_ERROR,
   CLEAR_MESSAGES,
 } from './types';
+import api from '../api/api';
 
 export const getMessages = (page = 1, size = 5) => async (dispatch) => {
   try {
@@ -28,7 +28,7 @@ export const getMessages = (page = 1, size = 5) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -48,7 +48,7 @@ export const getMessageThread = (userId) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
@@ -77,7 +77,7 @@ export const sendMessage = (receiverId, text) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors && errors.length > 0) {
-      Alert.alert(errors[0].msg);
+      Toast.show(errors[0].msg);
     }
   }
 };
